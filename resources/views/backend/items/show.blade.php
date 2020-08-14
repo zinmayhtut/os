@@ -9,7 +9,7 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-md-6">
-					<img src="{{asset($item->photo)}}" width="100" height="100"> 
+						<img src="{{asset($item->photo)}}" width="100" height="100"> 
 						
 					</div>
 					<div class="col-md-6">
@@ -32,6 +32,14 @@
 								<tr>
 									<td>Description</td>
 									<td>{{$item->description}}</td>
+								</tr>
+								<tr>
+									<td>Brand</td>
+									<td>{{$item->brand->name}}</td>
+								</tr>
+								<tr>
+									<td>Subcategory</td>
+									<td>{{$item->subcategory->name}}</td>
 								</tr>
 								
 

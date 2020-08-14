@@ -4,7 +4,7 @@
 
 	<div class="container-fluid">
 		<h2>Item Create (Form)</h2>
-		@if ($errors->any())
+		{{-- @if ($errors->any())
 		<div class="alert alert-danger">
 			<ul>
 				@foreach ($errors->all() as $error)
@@ -12,7 +12,7 @@
 				@endforeach
 			</ul>
 		</div>
-		@endif
+		@endif --}}
 		<form action="{{route('items.store')}}" method="POST" enctype="multipart/form-data">	
 			@csrf
 			<div class="form-group">
@@ -20,26 +20,33 @@
 					<tr>
 						<label>Codeno</label>
 						<input type="number" name="codeno" class="form-control">
+						<span style="color: red">{{$errors->first('name')}}</span><br>
 					</tr>
 					<tr>
 						<label>Name</label>
 						<input type="text" name="name" class="form-control">
+						<span style="color: red">{{$errors->first('name')}}</span><br>
 					</tr>
 					<tr>
 						<label>Price</label>
 						<input type="number" name="price" class="form-control">
+						<span style="color: red">{{$errors->first('price')}}</span><br>
 					</tr>
 					<tr>
 						<label>Discount</label>
 						<input type="number" name="discount" class="form-control">
+						<span style="color: red">{{$errors->first('name')}}</span><br>
+						
 					</tr>
 					<tr>
 						<label>Photo</label>
 						<input type="file" name="photo" class="form-control-file">
+						<span style="color: red">{{$errors->first('name')}}</span><br>
 					</tr>
 					<tr>
 						<label>Description</label>
 						<textarea class="form-control" name="description"></textarea>
+						<span style="color: red">{{$errors->first('name')}}</span><br>
 					</tr>
 					<tr>
 						<label>Brand</label>

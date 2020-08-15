@@ -15,7 +15,9 @@ class SubcategoryController extends Controller
      */
     public function index()
     {
-       return view('backend.subcategories.index');
+        $subcategories = Subcategory::all();
+        $category = Category::all();
+       return view('backend.subcategories.index',compact('subcategories','category'));
     }
 
     /**
@@ -79,7 +81,9 @@ class SubcategoryController extends Controller
      */
     public function edit($id)
     {
-        //
+        $subcategory = Subcategory::find($id);
+        $categories =Category::all();
+        return view('backend.subcategories.edit',compact('subcategory','categories'));
     }
 
     /**
@@ -91,7 +95,19 @@ class SubcategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'sname' => 'sometimes',
+            'scid' => 'required',
+
+        ]);
+
+        $subcategory = Subcategory::find($id);
+        $subcategory->name = $request->sname;
+        $subcategory->category_id = $request->scid;
+        $subcategory->save();
+
+        //redirect
+        return redirect()->route('subcategories.index');
     }
 
     /**
@@ -102,6 +118,10 @@ class SubcategoryController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $subcategory = Subcategory::find($id);
+        $subcategory -> delete();
+        
+        //redirect
+        return redirect()->route('subcategories.index');
     }
 }

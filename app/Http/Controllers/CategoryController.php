@@ -16,7 +16,9 @@ class CategoryController extends Controller
      */
     public function index()
     {
-      return view('backend.categories.index');
+        $categories = Category::all();
+        // dd ($categories);
+      return view('backend.categories.index',compact('categories'));
     }
 
     /**
@@ -42,19 +44,19 @@ class CategoryController extends Controller
         // validation
         $request->validate([
            
-            'cname' => 'required',
-            'cphoto' => 'required',
+            'name' => 'required',
+            'photo' => 'required',
             
         ]);
 
         //file upload
-         $imageName = time().'.'.$request->cphoto->extension();
+         $imageName = time().'.'.$request->photo->extension();
 
-        $request->cphoto->move(public_path('backend.categoryimg'),$imageName);
-        $myfile = 'backend/categoryimg'.$imageName;
+        $request->photo->move(public_path('backend/categoryimg'),$imageName);
+        $myfile = 'backend/categoryimg/'.$imageName;
 
         $category = new Category;
-        $category->name = $request->cname;
+        $category->name = $request->name;
         $category->photo = $myfile;
 
         $category->save();
@@ -83,7 +85,10 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-        return view('backend.categories.edit');
+              
+        $category = Category::find($id);
+        
+        return view('backend.categories.edit',compact('category'));
     }
 
     /**
@@ -95,7 +100,40 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+         $request->validate([
+           
+            'name' => 'required',
+            'photo' => 'sometimes',
+            
+        ]);
+
+        //file upload
+
+         if($request->hasFile('photo')){
+
+           $imageName = time().'.'.$request->photo->extension();
+
+           $request->photo->move(public_path('backend/categoryimg'),$imageName);
+           $myfile = 'backend/categoryimg/'.$imageName;
+
+           // unlink($request->oldphoto);
+
+       }else{
+
+        $myfile = $request->oldphoto;
+    }
+
+        $category = Category::find($id);
+       
+        $category->name = $request->name;
+        $category->photo = $myfile;
+
+        $category->save();
+
+
+        //redirect
+        return redirect()->route('categories.index');
+      
     }
 
     /**
@@ -106,6 +144,11 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $category = Category::find($id);
+        $category -> delete();
+        // unlink($category->photo);
+
+        //redirect
+        return redirect()->route('categories.index');
     }
 }

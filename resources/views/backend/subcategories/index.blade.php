@@ -15,17 +15,25 @@
 				</tr>
 			</thead>
 			<tbody>
+				@php
+					$i=1;
+				@endphp
+				@foreach($subcategories as $subcategory)
 				<tr>
-					<td>1</td>
-					
-					<td>Category One</td>
-					<td>3</td>
+					<td>{{$i++}}</td>					
+					<td>{{$subcategory->name}}</td>
+					<td>{{$subcategory->category->name}}</td>
 					
 					<td>
-						<a href="{{route('subcategories.edit',1)}}" class="btn btn-warning">Edit</a>
-						<a href="#" class="btn btn-danger">Delete</a>
+						<a href="{{route('subcategories.edit',$subcategory->id)}}" class="btn btn-warning">Edit</a>
+						<form method="post" action="{{route('subcategories.destroy',$subcategory->id)}}" onsubmit="return confirm('Are you sure?')" class="d-inline-block">
+							@csrf
+							@method('DELETE')
+							<input type="submit" name="btnsubmit" value="Delete" class="btn btn-danger">
+						</form>
 					</td>
 				</tr>
+				@endforeach
 			</tbody>
 		</table>
 	</div>

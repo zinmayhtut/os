@@ -231,6 +231,7 @@ $(document).ready(function(){
 			$.post('/orders',{shop_data:shopString,notes:notes},function(response){
 				// alert(response);
 				if (response) {
+					alert(response);
 					localStorage.clear();
 					getData();
 					location.href="/";

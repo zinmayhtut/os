@@ -10,7 +10,7 @@ use Auth;
 class OrderController extends Controller
 {
 
-    public function__constant($value='')
+    public function __construct($value='')
     {
         $this->middleware('role:admin')->except('store');
         $this->middleware('role:customer')->only('store');

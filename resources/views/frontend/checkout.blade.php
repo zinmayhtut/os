@@ -28,7 +28,7 @@
 
 					<a href="{{route('homepage')}}" class="btn btn-success mb-3">Continue Shopping</a>
 
-					@auth
+					@role('customer')
 
 					<a href="#" class="btn btn-success mb-3 float-right buy_now">Checkout</a>
 
@@ -36,7 +36,7 @@
 
 					<a href="{{route('login')}}" class="btn btn-success mb-3 float-right buy_now">Login in Checkout</a>
 
-					@endauth	
+					@endrole	
 
 				</div>
 			</div>

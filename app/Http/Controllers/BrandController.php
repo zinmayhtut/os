@@ -111,7 +111,7 @@ class BrandController extends Controller
 
         $imageName = time().'.'.$request->bphoto->extension();
 
-        $request->bphoto->move(public_path('backend/brandimg'),$imageName);
+        $request->bphoto->move(public_path('backend/brandimg/'),$imageName);
         $myfile = 'backend/brandimg/'.$imageName;
         //delet old photo(unlink)
 

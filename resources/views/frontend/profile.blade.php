@@ -15,13 +15,13 @@
 					Name    :
 				</div>
 				<div class="col-lg-6">
-					Mg Mg
+					{{Auth::user()->name}}
 				</div>
 				<div class="col-lg-6">
 					Email   :
 				</div>
 				<div class="col-lg-6">
-					abc@gmail.com
+					{{Auth::user()->email}}
 				</div>
 			</div>
 			</div>

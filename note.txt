@@ -91,6 +91,24 @@ Backend
 
 	-Retrieve Update Delete(catagegory,subcategory)hw
 
+17-8-2020
+
+-frontend
+	-profile UI
+
+
+//Deployment Laravel Project
+
+-create subdomain
+-enter into subdomain using SSH ssh -p 7822 username@domain.me
+-git clone
+-enter into folder (cd)
+-cp .env.example .env
+-composer install
+-php artisan key:generate
+
+
+
  
 
  

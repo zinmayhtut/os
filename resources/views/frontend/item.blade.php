@@ -9,7 +9,7 @@
 @section('content')
 	
 	<div class="col-lg-9">
-		<h2>Item Page</h2>
+		<h2 class="itemheader"></h2>
 	
 	<div id="myItems" class="row">
 		
@@ -71,7 +71,9 @@
 
 		$('.filter').click(function(){
 			var id=$(this).data('id');
+			var name=$(this).data('name');
 			showItems(id);
+			$('.itemheader').text("Filter By "+name);
 			})
 	})
 	</script>

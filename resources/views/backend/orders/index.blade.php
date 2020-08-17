@@ -30,7 +30,7 @@
 					<th>{{$order->note}}</th>
 					<th>{{$order->total}}</th>
 					<th>
-						<a href="#" class="btn btn-warning">Detail</a>
+						<a href="{{route('orders.show',$order->id)}}" class="btn btn-warning">Detail</a>
 						<a href="#" class="btn btn-danger">Confirm</a>
 					</th>
 				</tr>

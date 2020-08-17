@@ -27,5 +27,10 @@ class Item extends Model
                     ->withPivot('qty')
                     ->withTimestamps();
     }
+
+    // public function ()
+    // {
+    //     return $this->belongsToMany('App\Role');
+    // }
 }
   
